@@ -118,33 +118,65 @@ export default async function IssuesPage() {
             </p>
           </a>
 
-          <div style={categoryStyle}>
+          <a
+            href="/issues/electricity"
+            style={{
+              ...categoryStyle,
+              display: "block",
+              color: "#111",
+              textDecoration: "none",
+            }}
+          >
             <h2>Electricity</h2>
             <p>
               Power supply, streetlights and electrical infrastructure.
             </p>
-          </div>
+          </a>
 
-          <div style={categoryStyle}>
+          <a
+            href="/issues/healthcare"
+            style={{
+              ...categoryStyle,
+              display: "block",
+              color: "#111",
+              textDecoration: "none",
+            }}
+          >
             <h2>Healthcare</h2>
             <p>
               Hospitals, clinics and access to healthcare.
             </p>
-          </div>
+          </a>
 
-          <div style={categoryStyle}>
+          <a
+            href="/issues/education"
+            style={{
+              ...categoryStyle,
+              display: "block",
+              color: "#111",
+              textDecoration: "none",
+            }}
+          >
             <h2>Education</h2>
             <p>
               Schools, facilities and education services.
             </p>
-          </div>
+          </a>
 
-          <div style={categoryStyle}>
+          <a
+            href="/issues/environment"
+            style={{
+              ...categoryStyle,
+              display: "block",
+              color: "#111",
+              textDecoration: "none",
+            }}
+          >
             <h2>Environment</h2>
             <p>
               Pollution, green spaces and environmental problems.
             </p>
-          </div>
+          </a>
         </div>
 
         <section style={{ marginTop: "80px" }}>
@@ -186,4 +218,3 @@ export default async function IssuesPage() {
     </main>
   );
 }
-
