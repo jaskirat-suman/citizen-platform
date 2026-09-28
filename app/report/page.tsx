@@ -114,42 +114,48 @@ export default function ReportPage() {
         </p>
 
         <form
-  onSubmit={async (event) => {
-    event.preventDefault();
-    setSubmitting(true);
+          onSubmit={async (event) => {
+            event.preventDefault();
+            setSubmitting(true);
 
-    const newIssue = {
-      title,
-      category,
-      state,
-      district,
-      city,
-      locality,
-      description,
-    };
+            const newIssue = {
+              title,
+              category,
+              state,
+              district,
+              city,
+              locality,
+              description,
+            };
 
-const response = await fetch("/api/issues", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    ...newIssue,
-    country: "India",
-  }),
-});
+           try {
+  const response = await fetch("/api/issues", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...newIssue,
+      country: "India",
+    }),
+  });
 
-const result = await response.json();
+  const result = await response.json();
 
-if (!response.ok) {
+  if (!response.ok) {
+    alert(result.error || "Could not submit the issue.");
+    return;
+  }
+
+  console.log("Issue saved:", result.issue);
+  setSubmitted(true);
+} catch (error) {
+  console.error("Issue submission failed:", error);
+  alert("Could not connect to the server. Please try again.");
+} finally {
   setSubmitting(false);
-  alert(result.error || "Could not submit the issue.");
-  return;
 }
-
-console.log("Issue saved:", result.issue);
-setSubmitted(true);
-  }}
+          }}
           style={{
             background: "#fff",
             border: "1px solid #e5e5e5",
@@ -157,9 +163,9 @@ setSubmitted(true);
             padding: "32px",
           }}
         >
-          <label>
-  Issue title <span style={{ color: "#777" }}>*</span>
-</label>
+          <label style={labelStyle}>
+            Issue title <span style={{ color: "#777" }}>*</span>
+          </label>
 
           <input
             type="text"
@@ -167,13 +173,12 @@ setSubmitted(true);
             placeholder="e.g. Large potholes on Main Street"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
-            required
             style={inputStyle}
           />
 
-         <label>
-  Issue title <span style={{ color: "#777" }}>*</span>
-</label>
+          <label style={labelStyle}>
+            Category <span style={{ color: "#777" }}>*</span>
+          </label>
 
           <select
             value={category}
@@ -190,7 +195,7 @@ setSubmitted(true);
             <option value="Environment">Environment</option>
           </select>
 
-          <label>Location</label>
+          <label style={labelStyle}>Location</label>
 
           <div
             style={{
@@ -206,7 +211,6 @@ setSubmitted(true);
               required
               value={state}
               onChange={(event) => setState(event.target.value)}
-              required
               style={inputStyle}
             />
 
@@ -215,7 +219,6 @@ setSubmitted(true);
               required
               value={district}
               onChange={(event) => setDistrict(event.target.value)}
-              required
               style={inputStyle}
             />
 
@@ -224,7 +227,6 @@ setSubmitted(true);
               required
               value={city}
               onChange={(event) => setCity(event.target.value)}
-              required
               style={inputStyle}
             />
 
@@ -233,47 +235,66 @@ setSubmitted(true);
               required
               value={locality}
               onChange={(event) => setLocality(event.target.value)}
-              required
               style={inputStyle}
             />
           </div>
 
-          <label>Describe the issue</label>
+          <label style={labelStyle}>Describe the issue</label>
 
           <textarea
-          required
-          maxLength={2000}
-           placeholder="Describe what is happening, where it is happening, and how it affects people in the community..."
+            required
+            maxLength={2000}
+            placeholder="Describe what is happening, where it is happening, and how it affects people in the community..."
             rows={6}
             value={description}
             onChange={(event) => setDescription(event.target.value)}
-            required
             style={{
               ...inputStyle,
               resize: "vertical",
             }}
           />
 
-        <button
-  type="submit"
-  disabled={submitting}
-  style={{
-    background: "#111",
-    color: "#fff",
-    border: "none",
-    borderRadius: "999px",
-    padding: "16px 28px",
-    fontWeight: 600,
-    cursor: "pointer",
-  }}
->
-  {submitting ? "Submitting..." : "Submit Issue"}
-</button>
+          <p
+            style={{
+              margin: "-16px 4px 24px",
+              textAlign: "right",
+              color: description.length > 1800 ? "#b45309" : "#888",
+              fontSize: "12px",
+              fontWeight: description.length > 1800 ? 600 : 400,
+            }}
+          >
+            {description.length.toLocaleString()}/2,000
+          </p>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            style={{
+              background: "#111",
+              color: "#fff",
+              border: "none",
+              borderRadius: "999px",
+              padding: "16px 28px",
+              fontWeight: 600,
+              cursor: submitting ? "default" : "pointer",
+              opacity: submitting ? 0.7 : 1,
+            }}
+          >
+            {submitting ? "Submitting..." : "Submit Issue"}
+          </button>
         </form>
       </section>
     </main>
   );
 }
+
+const labelStyle = {
+  display: "block",
+  marginBottom: "10px",
+  fontSize: "14px",
+  fontWeight: 700,
+  color: "#222",
+};
 
 const inputStyle = {
   width: "100%",
