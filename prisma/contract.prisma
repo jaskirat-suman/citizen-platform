@@ -18,3 +18,12 @@ model Issue {
 
   @@map("issues")
 }
+model Comment {
+  id        Int      @id @default(autoincrement())
+  issueId   Int
+  name      String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@map("comments")
+}

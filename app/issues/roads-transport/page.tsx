@@ -3,8 +3,10 @@ import { db } from "../../lib/db";
 import IssueCard from "../../components/IssueCard";
 
 export default async function RoadsTransportPage() {
-  const roadsIssues = await db.orm.public.Issue
-    .select(
+    const issueTable = db.sql.public.issues;
+
+  const query = db.raw.sql`
+    SELECT
       "id",
       "title",
       "category",
@@ -17,12 +19,27 @@ export default async function RoadsTransportPage() {
       "supporters",
       "comments",
       "status"
-    )
-    .all();
+    FROM "issues"
+    WHERE "category" = 'Roads & Transport'
+    ORDER BY "id" DESC
+  `
+    .returnsRow({
+      id: issueTable.columns.id,
+      title: issueTable.columns.title,
+      category: issueTable.columns.category,
+      description: issueTable.columns.description,
+      country: issueTable.columns.country,
+      state: issueTable.columns.state,
+      district: issueTable.columns.district,
+      city: issueTable.columns.city,
+      locality: issueTable.columns.locality,
+      supporters: issueTable.columns.supporters,
+      comments: issueTable.columns.comments,
+      status: issueTable.columns.status,
+    })
+    .build();
 
-  const filteredIssues = roadsIssues.filter(
-    (issue) => issue.category === "Roads & Transport"
-  );
+  const filteredIssues = await db.runtime().query(query);
 
   const issueCardData = filteredIssues.map((issue) => ({
     id: String(issue.id),
