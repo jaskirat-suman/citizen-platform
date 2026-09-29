@@ -70,6 +70,21 @@ a:focus-visible {
     padding: 8px 4px 4px;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
+  .issue-card {
+  padding: 22px !important;
+  min-height: 165px !important;
+}
+main > section > div {
+  grid-template-columns: 1fr !important;
+}
+select {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+button {
+  max-width: 100%;
+}
+
 }
 @keyframes toastIn {
   from {

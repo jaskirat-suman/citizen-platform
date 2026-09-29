@@ -186,7 +186,7 @@ export default function LocationFilters({
           background: "#111",
           color: "#fff",
           borderRadius: "28px",
-          padding: "28px",
+       padding: "clamp(22px, 4vw, 28px)",
         }}
       >
         <p
@@ -317,6 +317,7 @@ export default function LocationFilters({
               borderRadius: "999px",
               padding: "14px 24px",
               fontWeight: 700,
+              width: "100%",
             }}
           >
             Apply Filters →
@@ -333,6 +334,7 @@ export default function LocationFilters({
                 borderRadius: "999px",
                 padding: "14px 24px",
                 fontWeight: 600,
+                width: "100%",
               }}
             >
               Clear Filters
