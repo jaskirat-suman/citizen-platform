@@ -149,15 +149,22 @@ export default function IssueCard({ issue }: IssueCardProps) {
       </p>
 
       <p
-        style={{
-          marginTop: "24px",
-          color: "#666",
-          fontSize: "14px",
-        }}
-      >
-        📍 {issue.locality}, {issue.city}, {issue.district},{" "}
-        {issue.state}
-      </p>
+  style={{
+    marginTop: "24px",
+    color: "#666",
+    fontSize: "14px",
+  }}
+>
+  📍{" "}
+  {[
+    issue.locality,
+    issue.city,
+    issue.district,
+    issue.state,
+  ]
+    .filter(Boolean)
+    .join(", ")}
+</p>
 
       <div
         style={{
