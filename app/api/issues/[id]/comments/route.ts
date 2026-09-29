@@ -101,7 +101,23 @@ const issues = await db.orm.public.Issue
 
     const [comment] = await db.runtime().query(query);
 
-    return Response.json({
+const issueTable = db.sql.public.issues;
+
+const updateCommentsQuery = db.raw.sql`
+  UPDATE "issues"
+  SET "comments" = "comments" + 1
+  WHERE "id" = ${issueId}
+  RETURNING "id", "comments"
+`
+  .returnsRow({
+    id: issueTable.columns.id,
+    comments: issueTable.columns.comments,
+  })
+  .build();
+
+await db.runtime().query(updateCommentsQuery);
+
+return Response.json({
       success: true,
       comment,
     });
