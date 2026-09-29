@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import LocationFilters from "../components/LocationFilters";
 import { db } from "../lib/db";
+import IssueSearch from "../components/IssueSearch";
 
 const categoryStyle = {
   background: "#ffffff",
@@ -448,8 +449,20 @@ export default async function IssuesPage() {
             Choose a state, district, city, or local area to
             discover issues affecting your community.
           </p>
+<IssueSearch
+  issues={issues.map((issue) => ({
+    id: issue.id,
+    title: issue.title,
+    category: issue.category,
+    description: issue.description,
+    state: issue.state,
+    district: issue.district,
+    city: issue.city,
+    locality: issue.locality,
+  }))}
+/>
 
-          <LocationFilters issues={issues} />
+<LocationFilters issues={issues} />
         </section>
       </section>
     </main>
