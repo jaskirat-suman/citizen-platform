@@ -193,6 +193,7 @@ export default function ReportPage() {
             <option value="Healthcare">Healthcare</option>
             <option value="Education">Education</option>
             <option value="Environment">Environment</option>
+            <option value="Others">Others</option>
           </select>
 
           <label style={labelStyle}>Location</label>

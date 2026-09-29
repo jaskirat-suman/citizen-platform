@@ -27,6 +27,29 @@ export default async function IssuesPage() {
       "status"
     )
     .all();
+    const categoryCounts = {
+  "Roads & Transport": issues.filter(
+    (issue) => issue.category === "Roads & Transport"
+  ).length,
+  "Water & Sanitation": issues.filter(
+    (issue) => issue.category === "Water & Sanitation"
+  ).length,
+  Electricity: issues.filter(
+    (issue) => issue.category === "Electricity"
+  ).length,
+  Healthcare: issues.filter(
+    (issue) => issue.category === "Healthcare"
+  ).length,
+  Education: issues.filter(
+    (issue) => issue.category === "Education"
+  ).length,
+  Environment: issues.filter(
+    (issue) => issue.category === "Environment"
+  ).length,
+  Others: issues.filter(
+    (issue) => issue.category === "Others"
+  ).length,
+};
 
   return (
     <main
@@ -89,7 +112,8 @@ export default async function IssuesPage() {
           }}
         >
           <a
-            href="/issues/roads-transport"
+  className="issue-card"
+  href="/issues/roads-transport"
             style={{
               ...categoryStyle,
               display: "block",
@@ -101,10 +125,40 @@ export default async function IssuesPage() {
             <p>
               Potholes, roads, traffic and public transportation.
             </p>
+        <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts["Roads & Transport"]}{" "}
+    {categoryCounts["Roads & Transport"] === 1
+      ? "issue"
+      : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
 
           <a
-            href="/issues/water-sanitation"
+  className="issue-card"
+  href="/issues/water-sanitation"
             style={{
               ...categoryStyle,
               display: "block",
@@ -116,10 +170,40 @@ export default async function IssuesPage() {
             <p>
               Drinking water, drainage, sewage and waste.
             </p>
+            <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts["Water & Sanitation"]}{" "}
+    {categoryCounts["Water & Sanitation"] === 1
+      ? "issue"
+      : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
 
           <a
-            href="/issues/electricity"
+  className="issue-card"
+  href="/issues/electricity"
             style={{
               ...categoryStyle,
               display: "block",
@@ -131,10 +215,38 @@ export default async function IssuesPage() {
             <p>
               Power supply, streetlights and electrical infrastructure.
             </p>
+           <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts.Electricity}{" "}
+    {categoryCounts.Electricity === 1 ? "issue" : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
 
-          <a
-            href="/issues/healthcare"
+        <a
+  className="issue-card"
+  href="/issues/healthcare"
             style={{
               ...categoryStyle,
               display: "block",
@@ -146,10 +258,38 @@ export default async function IssuesPage() {
             <p>
               Hospitals, clinics and access to healthcare.
             </p>
+            <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts.Healthcare}{" "}
+    {categoryCounts.Healthcare === 1 ? "issue" : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
 
           <a
-            href="/issues/education"
+  className="issue-card"
+  href="/issues/education"
             style={{
               ...categoryStyle,
               display: "block",
@@ -161,10 +301,38 @@ export default async function IssuesPage() {
             <p>
               Schools, facilities and education services.
             </p>
+            <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts.Education}{" "}
+    {categoryCounts.Education === 1 ? "issue" : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
 
           <a
-            href="/issues/environment"
+  className="issue-card"
+  href="/issues/environment"
             style={{
               ...categoryStyle,
               display: "block",
@@ -176,7 +344,76 @@ export default async function IssuesPage() {
             <p>
               Pollution, green spaces and environmental problems.
             </p>
+            <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts.Environment}{" "}
+    {categoryCounts.Environment === 1 ? "issue" : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
           </a>
+<a
+  className="issue-card"
+  href="/issues/others"
+  style={{
+    ...categoryStyle,
+    display: "block",
+    color: "#111",
+    textDecoration: "none",
+  }}
+>
+  <h2>Others</h2>
+  <p>
+    Civic problems that do not fit into the other categories.
+  </p>
+  <div
+  style={{
+    marginTop: "28px",
+    paddingTop: "16px",
+    borderTop: "1px solid #eeeeee",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontSize: "14px",
+    fontWeight: 700,
+    color: "#555",
+  }}
+>
+  <span>
+    {categoryCounts.Others}{" "}
+    {categoryCounts.Others === 1 ? "issue" : "issues"}
+  </span>
+
+  <span
+    style={{
+      fontSize: "18px",
+      color: "#111",
+    }}
+  >
+    →
+  </span>
+</div>
+</a>
         </div>
 
         <section style={{ marginTop: "80px" }}>
